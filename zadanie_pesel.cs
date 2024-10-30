@@ -6,7 +6,6 @@ class Program
     {
         string pesel;
 
-        // Wczytanie numeru PESEL
         Console.WriteLine("Podaj numer PESEL (11 cyfr), lub naciśnij Enter, aby użyć domyślnego (55030101193):");
         pesel = Console.ReadLine();
 
@@ -15,12 +14,10 @@ class Program
             pesel = "55030101193"; // Domyślny PESEL
         }
 
-        // Sprawdzanie płci
         char gender = CheckGender(pesel);
         string genderText = gender == 'K' ? "Kobieta" : "Mężczyzna";
         Console.WriteLine($"Płeć: {genderText}");
 
-        // Sprawdzanie sumy kontrolnej
         bool isValidChecksum = CheckChecksum(pesel);
         if (isValidChecksum)
         {
@@ -48,7 +45,6 @@ class Program
         int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
         int sum = 0;
 
-        // Obliczanie sumy kontrolnej
         for (int i = 0; i < 10; i++)
         {
             sum += int.Parse(pesel[i].ToString()) * weights[i];
@@ -57,7 +53,6 @@ class Program
         int M = sum % 10;
         int R = (M == 0) ? 0 : 10 - M;
 
-        // Sprawdzanie czy suma kontrolna jest zgodna z ostatnią cyfrą PESEL
         return R == int.Parse(pesel[10].ToString());
     }
 }
